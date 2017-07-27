@@ -1,15 +1,43 @@
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Created by ScorpionOrange on 2017/07/24.
  */
 public class CoordinateSystem {
-    // Do nothing yet, but soon!
+    public static void main(String[] args){
+        EventQueue.invokeLater(() -> {
+            JFrame frame = new CoordinateSystemFrame();
+            frame.setTitle("Coordinate System");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
+        });
+    }
+}
 
-    //默认构造函数
-    public CoordinateSystem(){}
+/**
+ * A frame that contains a panel with Coordinate System drawings.
+ */
+class CoordinateSystemFrame extends JFrame{
+    public CoordinateSystemFrame(){
+        add(new CoordinateSystemComponent());
+        pack();
+    }
+}
 
-    //整形构造函数（接受整形坐标的数组）
-    public CoordinateSystem(int[] inputArray){}
+/**
+ * A component that draw Coordinate System.
+ */
+class CoordinateSystemComponent extends JComponent{
+    //get screen dimensions
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+    Dimension screenSize = toolkit.getScreenSize();
+    int screenHeight = screenSize.height;
+    int screenWidth = screenSize.width;
 
-    //浮点构造函数（接受浮点坐标的数组）
-    public CoordinateSystem(double[] inputArray){}
+    public void paintComponent(Graphics graphics){
+        Graphics2D graphics2D = (Graphics2D) graphics;
+
+        // draw
+    }
 }
