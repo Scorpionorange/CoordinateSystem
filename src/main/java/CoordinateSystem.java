@@ -11,7 +11,8 @@ public class CoordinateSystem {
         EventQueue.invokeLater(() -> {
             JFrame frame = new CoordinateSystemFrame();
             frame.setTitle("Coordinate System");
-            frame.setSize(800, 600);
+            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            //frame.setSize(800, 600);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
         });
@@ -49,6 +50,9 @@ class CoordinateSystemComponent extends JComponent{
 
         // draw X-axis
         graphics2D.draw(new Line2D.Double(leftMiddle,rightMiddle));
+
+        // draw Y-axis
+        graphics2D.draw(new Line2D.Double(topMiddle, bottomMiddle));
     }
 
     public Dimension getPreferreiSize(){
