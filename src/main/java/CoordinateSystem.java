@@ -10,10 +10,6 @@ public class CoordinateSystem {
     public static void main(String[] args){
         EventQueue.invokeLater(() -> {
             JFrame frame = new CoordinateSystemFrame();
-            frame.setTitle("Coordinate System");
-            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            //frame.setSize(800, 600);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
         });
     }
@@ -24,6 +20,14 @@ public class CoordinateSystem {
  */
 class CoordinateSystemFrame extends JFrame{
     public CoordinateSystemFrame(){
+
+        //默认最大化窗口
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        //集成化至JFrame内部
+        this.setTitle("Coordinate System");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         add(new CoordinateSystemComponent());
         pack();
     }
