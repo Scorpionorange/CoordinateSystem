@@ -44,11 +44,11 @@ class CoordinateSystemComponent extends JComponent{
     int screenWidth = screenSize.width;
     int screenHeight = screenSize.height;
 
-    Point2D center = new Point2D.Double(screenWidth / 2, screenHeight / 2);
-    Point2D leftMiddle = new Point2D.Double(0, screenHeight / 2);
-    Point2D rightMiddle = new Point2D.Double(screenWidth, screenHeight / 2);
+    Point2D center = new Point2D.Double(screenWidth / 2, (screenHeight - 150) / 2);
+    Point2D leftMiddle = new Point2D.Double(0, (screenHeight - 150) / 2);
+    Point2D rightMiddle = new Point2D.Double(screenWidth, (screenHeight - 150) / 2);
     Point2D topMiddle = new Point2D.Double(screenWidth / 2, 0);
-    Point2D bottomMiddle = new Point2D.Double(screenWidth / 2, screenHeight);
+    Point2D bottomMiddle = new Point2D.Double(screenWidth / 2, screenHeight - 75);
 
     public void paintComponent(Graphics graphics){
         Graphics2D graphics2D = (Graphics2D) graphics;
@@ -56,8 +56,17 @@ class CoordinateSystemComponent extends JComponent{
         // draw X-axis
         graphics2D.draw(new Line2D.Double(leftMiddle,rightMiddle));
 
+        // draw string "+X" and "-X"
+        graphics2D.drawString("+X", (int)rightMiddle.getX() - 10, (int)rightMiddle.getY() - 5);
+        graphics2D.drawString("-X", (int)leftMiddle.getX() + 10, (int)leftMiddle.getY() + 10);
+
         // draw Y-axis
         graphics2D.draw(new Line2D.Double(topMiddle, bottomMiddle));
+
+        // draw string "+Y" and "-Y"
+        graphics2D.drawString("+Y", (int)topMiddle.getX() + 5, (int)topMiddle.getY() + 10);
+        graphics2D.drawString("-Y", (int)bottomMiddle.getX() - 15, (int)bottomMiddle.getY());
+
     }
 
     public Dimension getPreferreiSize(){
