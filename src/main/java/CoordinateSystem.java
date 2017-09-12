@@ -11,6 +11,7 @@ public class CoordinateSystem {
         EventQueue.invokeLater(() -> {
             JFrame frame = new CoordinateSystemFrame();
             frame.setVisible(true);
+            frame.setResizable(false);
         });
     }
 }
