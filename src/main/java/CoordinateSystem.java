@@ -67,6 +67,8 @@ class CoordinateSystemComponent extends JComponent{
         graphics2D.drawString("+Y", (int)topMiddle.getX() + 5, (int)topMiddle.getY() + 10);
         graphics2D.drawString("-Y", (int)bottomMiddle.getX() - 15, (int)bottomMiddle.getY());
 
+        // draw a line
+        graphics2D.drawLine((int)center.getX(), (int)center.getY(), (int)center.getX() + 100, (int)center.getY() - 100);
     }
 
     public Dimension getPreferreiSize(){
