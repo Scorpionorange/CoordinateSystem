@@ -50,12 +50,50 @@ class CoordinateSystemComponent extends JComponent{
     Point2D topMiddle = new Point2D.Double(screenWidth / 2, 0);
     Point2D bottomMiddle = new Point2D.Double(screenWidth / 2, screenHeight - 75);
 
+    //int X0, Y0;
     int X0 = (int)center.getX();
     int Y0 = (int)center.getY();
 
-    public void paintComponent(Graphics graphics) {
-        Graphics2D graphics2D = (Graphics2D) graphics;
+    Graphics2D graphics2D;
 
+    public void paintComponent(Graphics graphics) {
+        graphics2D = (Graphics2D) graphics;
+
+        setOrigin();
+
+        // draw a testing line
+        Coordinate2D C2D01 = new Coordinate2D(100, 100);
+        Coordinate2D C2D02 = new Coordinate2D(500, 400);
+        Coordinate2D C2D03 = new Coordinate2D(500, 100);
+        graphics2D.drawLine(C2D01.getPixelPointX(), C2D01.getPixelPointY(), C2D02.getPixelPointX(), C2D02.getPixelPointY());
+        graphics2D.drawLine(C2D02.getPixelPointX(), C2D02.getPixelPointY(),C2D03.getPixelPointX(), C2D03.getPixelPointY());
+        graphics2D.drawLine(C2D03.getPixelPointX(), C2D03.getPixelPointY(),C2D01.getPixelPointX(), C2D01.getPixelPointY());
+
+        int A = 0, B;
+        for(int i = 0; i > -100; i--){
+            A += i;
+            B= 2*A + 1;
+            drawPoint(A , B);
+        }
+    }
+
+    //switching Coordinate System to Origin point (X0, Y0)
+    public class Coordinate2D{
+        int x, y;
+        public Coordinate2D(int x, int y){
+            this.x = x;
+            this.y = y;
+        }
+        public int getPixelPointX(){
+            return X0 + x;
+        }
+        public int getPixelPointY(){
+            return Y0 - y;
+        }
+    }
+
+    // default Origin Point at Center
+    public void setOrigin(){
         // draw X-axis
         graphics2D.draw(new Line2D.Double(leftMiddle, rightMiddle));
 
@@ -70,20 +108,18 @@ class CoordinateSystemComponent extends JComponent{
         graphics2D.drawString("+Y", (int) topMiddle.getX() + 5, (int) topMiddle.getY() + 10);
         graphics2D.drawString("-Y", (int) bottomMiddle.getX() - 15, (int) bottomMiddle.getY());
 
-        // draw a testing line
-        //graphics2D.drawLine(X0, Y0, X0 + 100, Y0 - 100);
-
-        // testing F(x)
-        for(int i = 0; i <= 150; i++){
-            graphics2D.drawLine(X0 + i, F(X0 +i), X0 + i, F(X0 - i));
-        }
-
     }
 
-    // y = F(x) = 3x + 2;
-    public int F(int x) {
-        int y = 3 * x + 2;
-        return y;
+    public void drawPoint(int x, int y){
+        int X = new Coordinate2D(x, y).getPixelPointX();
+        int Y = new Coordinate2D(x, y).getPixelPointY();
+        graphics2D.drawLine(X, Y, X, Y);
+    }
+
+    public void drawPoint(Point2D point2D){
+        int x = (int)point2D.getX();
+        int y = (int)point2D.getY();
+        drawPoint(x, y);
     }
 
     public Dimension getPreferreiSize(){
