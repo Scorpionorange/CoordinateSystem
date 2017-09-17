@@ -122,11 +122,26 @@ class CoordinateSystemComponent extends JComponent{
         int Y = new Coordinate2D(x, y).getPixelPointY();
         graphics2D.drawLine(X, Y, X, Y);
     }
-
     public void drawPoint(Point2D point2D){
         int x = (int)point2D.getX();
         int y = (int)point2D.getY();
         drawPoint(x, y);
+    }
+
+    //new drawLine() for new Coordinate System which origin at center, not finish yet
+    public void drawLine(int x1, int y1, int x2, int y2){
+        int a1 = new Coordinate2D(x1, y1).getPixelPointX();
+        int b1 = new Coordinate2D(x1, y1).getPixelPointY();
+        int a2 = new Coordinate2D(x2, y2).getPixelPointX();
+        int b2 = new Coordinate2D(x2, y2).getPixelPointY();
+        graphics2D.drawLine(a1, b1, a2, b2);
+    }
+    public void drawLine(Point2D A, Point2D B){
+        int x1 = (int)A.getX();
+        int y1 = (int)A.getY();
+        int x2 = (int)B.getX();
+        int y2 = (int)B.getY();
+        drawLine(x1, y1, x2, y2);
     }
 
     public Dimension getPreferreiSize(){
