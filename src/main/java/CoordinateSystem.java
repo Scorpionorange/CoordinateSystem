@@ -61,19 +61,26 @@ class CoordinateSystemComponent extends JComponent{
 
         setOrigin();
 
-        // draw a testing line
+        // draw some testing line, to make a triangle
+        /*
         Coordinate2D C2D01 = new Coordinate2D(100, 100);
         Coordinate2D C2D02 = new Coordinate2D(500, 400);
         Coordinate2D C2D03 = new Coordinate2D(500, 100);
         graphics2D.drawLine(C2D01.getPixelPointX(), C2D01.getPixelPointY(), C2D02.getPixelPointX(), C2D02.getPixelPointY());
         graphics2D.drawLine(C2D02.getPixelPointX(), C2D02.getPixelPointY(),C2D03.getPixelPointX(), C2D03.getPixelPointY());
         graphics2D.drawLine(C2D03.getPixelPointX(), C2D03.getPixelPointY(),C2D01.getPixelPointX(), C2D01.getPixelPointY());
+        */
 
-        int A = 0, B;
-        for(int i = 0; i > -100; i--){
+        int A = -120, B = A + 1;
+        for(int i = 0; i < 120; i++){
+            int a = A;
+            int b = B;
             A += i;
-            B= 2*A + 1;
+            B= A + 1;
             drawPoint(A , B);
+            graphics2D.drawLine(new Coordinate2D(a, b).getPixelPointX(), new Coordinate2D(a, b).getPixelPointY(),
+                                //new Coordinate2D(A, B).getPixelPointX(), new Coordinate2D(A, B).getPixelPointY());
+                                A, B);
         }
     }
 
