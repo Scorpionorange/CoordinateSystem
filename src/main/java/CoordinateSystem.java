@@ -61,24 +61,27 @@ class CoordinateSystemComponent extends JComponent{
 
         setOrigin();
 
-        // draw some testing line, to make a triangle
-        /*
-        Coordinate2D C2D01 = new Coordinate2D(100, 100);
-        Coordinate2D C2D02 = new Coordinate2D(500, 400);
-        Coordinate2D C2D03 = new Coordinate2D(500, 100);
-        graphics2D.drawLine(C2D01.getPixelPointX(), C2D01.getPixelPointY(), C2D02.getPixelPointX(), C2D02.getPixelPointY());
-        graphics2D.drawLine(C2D02.getPixelPointX(), C2D02.getPixelPointY(),C2D03.getPixelPointX(), C2D03.getPixelPointY());
-        graphics2D.drawLine(C2D03.getPixelPointX(), C2D03.getPixelPointY(),C2D01.getPixelPointX(), C2D01.getPixelPointY());
-        */
-
-        int A = -950, B = A + 1;
-        for(int i = 0; i < 120; i++){
+        int R = 400;
+        int A = -400, B = Circle(R, A);
+        for(int i = 0; i < 2*R; i++){
             int a = A;
             int b = B;
-            A += i;
-            B= A;
-            drawPoint(A , B);
-            graphics2D.drawLine(new Coordinate2D(a, b).getPixelPointX(), new Coordinate2D(a, b).getPixelPointY(), A, B);
+            A++;
+            B = Circle(R, A);
+            graphics2D.drawLine(new Coordinate2D(a, b).getPixelPointX(), new Coordinate2D(a, b).getPixelPointY(),
+                    new Coordinate2D(A, B).getPixelPointX(), new Coordinate2D(A, B).getPixelPointY());
+            graphics2D.drawLine(new Coordinate2D(a, -b).getPixelPointX(), new Coordinate2D(a, -b).getPixelPointY(),
+                    new Coordinate2D(A, -B).getPixelPointX(), new Coordinate2D(A, -B).getPixelPointY());
+        }
+
+        int M = -500, N = (int)Math.sin(M * 0.01) * 100;
+        for(int i = 0; i < 2*M; i++){
+            int m = M;
+            int n = N;
+            M++;
+            N = (int)Math.sin(M * 0.01) * 100;
+            graphics2D.drawLine(new Coordinate2D(m, n).getPixelPointX(), new Coordinate2D(m, n).getPixelPointY(),
+                    new Coordinate2D(M, N).getPixelPointX(), new Coordinate2D(M, N).getPixelPointY());
         }
     }
 
@@ -140,6 +143,10 @@ class CoordinateSystemComponent extends JComponent{
         int x2 = (int)B.getX();
         int y2 = (int)B.getY();
         drawLine(x1, y1, x2, y2);
+    }
+
+    public int Circle(int r, int a){
+        return (int)Math.sqrt(r*r - a*a);
     }
 
     public Dimension getPreferreiSize(){
