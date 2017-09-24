@@ -71,16 +71,14 @@ class CoordinateSystemComponent extends JComponent{
         graphics2D.drawLine(C2D03.getPixelPointX(), C2D03.getPixelPointY(),C2D01.getPixelPointX(), C2D01.getPixelPointY());
         */
 
-        int A = -120, B = A + 1;
+        int A = -950, B = A + 1;
         for(int i = 0; i < 120; i++){
             int a = A;
             int b = B;
             A += i;
-            B= A + 1;
+            B= A;
             drawPoint(A , B);
-            graphics2D.drawLine(new Coordinate2D(a, b).getPixelPointX(), new Coordinate2D(a, b).getPixelPointY(),
-                                //new Coordinate2D(A, B).getPixelPointX(), new Coordinate2D(A, B).getPixelPointY());
-                                A, B);
+            graphics2D.drawLine(new Coordinate2D(a, b).getPixelPointX(), new Coordinate2D(a, b).getPixelPointY(), A, B);
         }
     }
 
